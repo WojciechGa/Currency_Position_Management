@@ -1,0 +1,26 @@
+//Currency Position Management
+
+Invoice, Currency, Company, HedgeContract(abstract), ExchangeRates
+
+//Invoice
+currency
+amount
+side - buy or sell (finnal)
+payment date
+issue date
+issue date NBP rate
+
+
+//Company
+invoice list
+settelment currency
+
+
+//HedgeContract
+base currency
+quote currency
+payment date
+term exchange rate
+
+
+
