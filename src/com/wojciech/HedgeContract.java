@@ -4,7 +4,13 @@ import java.util.Calendar;
 
 import static java.util.Calendar.YEAR;
 
-public class HedgeContract {
+/**
+ * Class describing hedge contract and it's details.
+ * It shows positions that are secured.
+ *
+ */
+public class HedgeContract implements ShowDate {
+    private double amount;
     private String baseCurrency;
     private String quoteCurrency;
     private HedgeContractSide hedgeContractSide;
@@ -16,15 +22,18 @@ public class HedgeContract {
      * Constructing new hedge contract with all required feelds
      * @param baseCurrency of contract
      * @param quoteCurrency of contract
+     * @param amount of contract in base currency
      * @param side 2 options from HedgeContractSide showing side form Base curr. perspektive
      * @param exchangeRate term rate of contract
      * @param year of delivery
      * @param mounth of delivery
      * @param day of delivery
      */
-    public HedgeContract(String baseCurrency, String quoteCurrency, HedgeContractSide side, double exchangeRate, int year, int mounth, int day){
+    public HedgeContract(String baseCurrency, String quoteCurrency, double amount,
+                         HedgeContractSide side, double exchangeRate, int year, int mounth, int day){
         this.baseCurrency = baseCurrency;
         this.quoteCurrency = quoteCurrency;
+        this.amount = amount;
         this.hedgeContractSide = side;
         this.exchangeRate = exchangeRate;
         issueDate = Calendar.getInstance();
@@ -42,20 +51,11 @@ public class HedgeContract {
                 "baseCurrency='" + baseCurrency + '\'' +
                 ",\n quoteCurrency='" + quoteCurrency + '\'' +
                 ",\n hedgeContractSide=" + hedgeContractSide +
+                ",\n baseCurrencyamount=" +amount +
                 ",\n exchangeRate=" + exchangeRate +
-                ",\n issueDate=" + showIssueDate() +
-                ",\n paymentDate=" + showPaymentDate() +
+                ",\n issueDate=" + ShowDate.showDate(issueDate) +
+                ",\n paymentDate=" + ShowDate.showDate(paymentDate) +
                 '}';
     }
 
-    //showing Calendar in good format
-    private String showIssueDate() {
-        return String.format("%d-%02d-%02d"
-                , issueDate.get(YEAR), issueDate.get(Calendar.MONTH), issueDate.get(Calendar.DAY_OF_MONTH));
-    }
-
-    private String showPaymentDate() {
-        return String.format("%d-%02d-%02d"
-                ,paymentDate.get(YEAR), paymentDate.get(Calendar.MONTH), paymentDate.get(Calendar.DAY_OF_MONTH));
-    }
 }
