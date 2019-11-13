@@ -5,13 +5,15 @@ Invoice, Currency, Company, HedgeContract(abstract), ExchangeRates
 //Invoice
 currency
 amount
-side - buy or sell (finnal)
+side - buy or sell (enum)
 payment date
 issue date
 issue date NBP rate
 
 
 //Company
+name
+hede contracts list
 invoice list
 settelment currency
 
