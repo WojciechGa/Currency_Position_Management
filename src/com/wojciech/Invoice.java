@@ -22,24 +22,38 @@ public class Invoice implements ShowDate{
     private InvoiceType invoiceType;
     private double kursNbpPodatkowy;
 
+    /*
+      Initializes date fields
+     */
+    {
+        issueDate = Calendar.getInstance();
+        paymentDate = Calendar.getInstance();
+    }
+
     /**
      *  Constructing invoice, NBP rate is taken from tables (to be set)
      *  isueDate is on day of registration
+     *  payment day hour is on 23:59:59
      * @param currency of invoice
      * @param amount in currency
      * @param year of payment
-     * @param mounth  of payment
+     * @param month  of payment
      * @param day of payment
      * @param invoiceType asset or liability (Enum type)
      */
-    public Invoice(String currency, double amount, int year, int mounth, int day, InvoiceType invoiceType) {
+    public Invoice(String currency, double amount, int year, int month, int day, InvoiceType invoiceType) {
         this.currency = currency;
         this.amount = amount;
-        this.paymentDate = Calendar.getInstance();
-        paymentDate.set(year, mounth, day);
+        paymentDate.set(year, month, day, 23, 59,59);
         this.invoiceType = invoiceType;
-        this.issueDate = Calendar.getInstance();
     }
+
+    public Invoice (String currency, double amount, int year, int month, int day, InvoiceType invoiceType,
+                    int yearStart, int monthStart, int dayStart){
+        this(currency, amount, year, month, day, invoiceType);
+        issueDate.set(yearStart, monthStart, dayStart);
+    }
+
 
     @Override
     public String toString() {
