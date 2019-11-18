@@ -10,6 +10,6 @@ import static java.util.Calendar.YEAR;
 public interface ShowDate {
 
     static String showDate(Calendar cal){
-        return String.format("%1$tF %<tT", cal);
+        return String.format("%1$tF %<tT | %<tc", cal);
     }
 }
