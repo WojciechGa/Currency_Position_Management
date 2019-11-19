@@ -67,7 +67,7 @@ public class Invoice implements ShowDate{
         public Builder(String currency, double amount, int year, int month, int day, InvoiceType invoiceType) {
             this.currency = currency;
             this.amount = amount;
-            paymentDate.set(year, month, day, 23, 59,59);
+            paymentDate.set(year, month - 1, day, 23, 59,59);
             this.invoiceType = invoiceType;
         }
 
